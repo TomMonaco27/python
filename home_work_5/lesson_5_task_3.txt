@@ -1,0 +1,4 @@
+Ivanov 13000.223
+Petrov 19200.2
+Sidorov 13300.2
+Friend 10000
