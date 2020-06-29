@@ -41,9 +41,9 @@ class TrafficLight:
             
 def check_input():
     try:
-        count_number = input("How many traffic light cycles do you want(enter a number 1 < n): ")
+        count_number = input("How many traffic light cycles do you want(enter a number 1 <= n): ")
         if count_number.isdigit():
-            while 0 >= int(count_number):
+            while 0 > int(count_number):
                 return check_input()
         else:
             return check_input()
