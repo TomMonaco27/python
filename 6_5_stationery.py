@@ -64,4 +64,14 @@ print(Stationery.__dict__)
 # удаляем атрибут 'name_shop' c помощью delattr
 delattr(Stationery, 'price')
 print(Stationery.__dict__)
-
+# локальные, глобальные переменные
+# посмотрим атрибуты дочернего класса Pen() и создадим локальный атрибут в классе Pen()
+print(pen.__dict__)
+pen.weight = 10
+print(pen.__dict__)
+# создадим локальный атрибут _title в классе Pen()
+pen._title = "канцелярская принадлежность номер 1: "
+# удаляем локальную переменную _title в классе Pen()
+del pen._title
+# смотрим глобальную переменную _title из класса Stationery(), т.к. локальную мы удалили
+print(pen._title)
