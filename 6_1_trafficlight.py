@@ -20,8 +20,7 @@ class TrafficLight:
     __color = ['red', 'yellow', 'green', 'yellow']
 
     def running(self, count_number):
-        try:
-            if count_number.isdigit():
+               try:
                 iter = cycle(TrafficLight.__color)
                 for el in islice(iter, int(count_number)):
                     if el == 'red':
@@ -33,15 +32,30 @@ class TrafficLight:
                     else:
                         print(f'\033[32m{el}')
                         time.sleep(7)
-            else:
-                return print('Error! Your enter not digits!')
         except:
             print('Error in method running() class TrafficLight! Something wrong, but don\'t worry, be happy.'
                   ' Maybe next time, buy yourself a ice cream :)')
         finally:
             print('\033[30mEnd the program.')
 
-
+            
+def check_input():
+    try:
+        count_number = input("How many traffic light cycles do you want(enter a number 1 < n): ")
+        if count_number.isdigit():
+            while 0 >= int(count_number):
+                return check_input()
+        else:
+            return check_input()
+        return int(count_number)
+    except ValueError:
+        print('Input error in check_input()')
+    except:
+        print('Error in check_input()! Something wrong, but don\'t worry, be happy.'
+              ' Maybe next time, buy yourself a ice cream :)')
+        
+        
+# цветной вывод названия программы
 name_program = "TrafficLight"
 print('Program "', end='')
 color = ['\033[31m', '\033[33m', '\033[32m']
@@ -50,5 +64,7 @@ for i in range(len(name_program)):
     for el in islice(iter, 1):
         print(f'{el} {name_program[i]}', end='')
 print('\033[30m"\n', end= '')
+# запуск класса TrafficLight
 my_traffic_light = TrafficLight()
-my_traffic_light.running(input("How many traffic light cycles do you want: "))
+# вызов метода running класса TrafficLight c функцией проверки ввода
+my_traffic_light.running(check_input())
