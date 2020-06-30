@@ -16,7 +16,7 @@ from abc import ABC, abstractmethod
 
 
 class Clothes(ABC):
-#    consumption_fabric = 0
+
     const_coat_6_5 = 6.5
     const_coat_0_5 = 0.5
     const_suit_2 = 2
@@ -26,38 +26,81 @@ class Clothes(ABC):
     def consumption_fabric(self):
         pass
 
-#    def __str__(self):
-#        return f'need {self.consumption_fabric}'
-
 
 class Coat(Clothes):
     def __init__(self, size=1):
         self.size = size
 
+    @property
+    def size(self):
+        return self.__size
+
+    @size.setter
+    def size(self, size):
+        if size < 46:
+            self.__size = 44 # устанавливаем размер xs
+        elif 46 <= size <= 48:
+            self.__size = 48  # устанавливаем размер s
+        elif 48 < size <= 50:
+            self.__size = 50  # устанавливаем размер m
+        else:
+           self.__size = 52 # размер l и выше( к сожалению, оверсайза нет, ищите другой магазин...
+
     def consumption_fabric(self):
         self.consumption_fabric = self.size / self.const_coat_6_5 + self.const_coat_0_5
         return self.consumption_fabric
 
+
     def __str__(self):
-        return f'Coat need consuption_fabric: {self.consumption_fabric:.4f}'
+        return f'Сonsuption fabric on Coat need on your size {str(self.size)} is {self.consumption_fabric:.2f} '
 
 
 class Suit(Clothes):
     def __init__(self, height=1):
         self.height = height
 
+    @property
+    def height(self):
+        return self.__height
+
+    @height.setter
+    def height(self, height):
+        if height < 150:
+            self.__height = 150  # устанавливаем рост 150
+        elif 150 <= height <= 165:
+            self.__height = 165  # устанавливаем рост 165
+        elif 165 < height <= 180:
+            self.__height = 180  # устанавливаем рост 180
+        else:
+            self.__height = 200  # устанавливаем рост 200
+
     def consumption_fabric(self):
         self.consumption_fabric = self.height / self.const_suit_2 + self.const_suit_0_3
         return self.consumption_fabric
 
     def __str__(self):
-        return f'Suit need consuption_fabric: {self.consumption_fabric:.4f}'
+        return f'Consuption fabric to your Suit need for your hight:{str(self.height)} is : {self.consumption_fabric:.1f}'
 
 
-new_coat = Coat(11)
-
+new_coat = Coat(1)
 new_coat.consumption_fabric()
 print(new_coat)
-new_suit = Suit(11)
+new_coat = Coat(47)
+new_coat.consumption_fabric()
+print(new_coat)
+new_coat = Coat(49)
+new_coat.consumption_fabric()
+print(new_coat)
+
+new_suit = Suit(149)
+new_suit.consumption_fabric()
+print(new_suit)
+new_suit = Suit(155)
+new_suit.consumption_fabric()
+print(new_suit)
+new_suit = Suit(180)
+new_suit.consumption_fabric()
+print(new_suit)
+new_suit = Suit(200)
 new_suit.consumption_fabric()
 print(new_suit)
