@@ -29,30 +29,46 @@ class Clothes(ABC):
 
 class Coat(Clothes):
     def __init__(self, size=1):
-        self.size = size
+        try:
+            self.size = size
+        except:
+            print('Error! __init__')
 
     @property
     def size(self):
-        return self.__size
+        try:
+            return self.__size
+        except:
+            print('Error! size()')
 
     @size.setter
     def size(self, size):
-        if size < 46:
-            self.__size = 44 # устанавливаем размер xs
-        elif 46 <= size <= 48:
-            self.__size = 48  # устанавливаем размер s
-        elif 48 < size <= 50:
-            self.__size = 50  # устанавливаем размер m
-        else:
-           self.__size = 52 # размер l и выше( к сожалению, оверсайза нет, ищите другой магазин...
+        try:
+            if not isinstance(size, (int, float)):
+                print('Error! you enter not number')
+            if size < 46:
+                self.__size = 44 # устанавливаем размер xs
+            elif 46 <= size <= 48:
+                self.__size = 48  # устанавливаем размер s
+            elif 48 < size <= 50:
+                self.__size = 50  # устанавливаем размер m
+            else:
+               self.__size = 52 # размер l и выше( к сожалению, оверсайза нет, ищите другой магазин...
+        except ValueError:
+            print('Error! size()')
 
     def consumption_fabric(self):
-        self.consumption_fabric = self.size / self.const_coat_6_5 + self.const_coat_0_5
-        return self.consumption_fabric
-
+        try:
+            self.consumption_fabric = self.size / self.const_coat_6_5 + self.const_coat_0_5
+            return self.consumption_fabric
+        except:
+            print('Error in consumption_fabric()')
 
     def __str__(self):
-        return f'Сonsuption fabric on Coat need on your size {str(self.size)} is {self.consumption_fabric:.2f} '
+        try:
+            return f'Сonsuption fabric on Coat need on your size {str(self.size)} is {self.consumption_fabric:.2f} '
+        except:
+            print('Error __str__')
 
 
 class Suit(Clothes):
@@ -79,7 +95,7 @@ class Suit(Clothes):
         return self.consumption_fabric
 
     def __str__(self):
-        return f'Consuption fabric to your Suit need for your hight:{str(self.height)} is : {self.consumption_fabric:.1f}'
+        return f'Consuption fabric to your Suit need for your hight {str(self.height)} is : {self.consumption_fabric:.1f}'
 
 
 new_coat = Coat(1)
