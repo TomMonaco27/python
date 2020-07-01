@@ -22,25 +22,14 @@ class Matrix:
         except:
             print('Error __init__')
 
+            
     def __str__(self):
         try:
             return '\n'.join('\t'.join(map(str, row)) for row in self.list_of_lists)
         except:
             print('Error __str__')
-#    def __str__(self):
-#        return "\n".join("\t".join(map(str, row)) for row in self.list_of_lists)
 
-#    def __str__(self):
-#        for row in self.list_of_lists:
-#            for x in row:
-#                print("{:4d}".format(x), end="")
-#            print()
-
-#    def __str__(self):
-#        for line in self.final:
-#            print('\n'.join(*line))
-
-
+            
     def __add__(self, other):
         try:
             for i in range(len(self.list_of_lists)):
