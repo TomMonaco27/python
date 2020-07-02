@@ -60,7 +60,6 @@ class Cell:
     def __truediv__(self, other):
         try:
             self.final_cell = max(self.number_cells, other.number_cells) // min(self.number_cells, other.number_cells)
-#            self.final_cell = self.number_cells // other.number_cells
             return f'Cell: {max(self.number_cells, other.number_cells)} // Cell: {min(self.number_cells, other.number_cells)} result: {self.final_cell}'
         except:
             print('Error __truediv__')
@@ -70,9 +69,13 @@ class Cell:
 
     def make_order(self, num_cells_in_row):
         try:
-            print('Make order: ')
-            for i in range(0, self.number_cells, num_cells_in_row):
-                print('*' * num_cells_in_row)
+            print('\nMake order: ')
+            count_cells = divmod(self.number_cells, num_cells_in_row)
+            for i in range(count_cells[0]):
+                print('*' * num_cells_in_row, end='')
+                print('')
+            for j in range(count_cells[1]):
+                print('*', end='')
         except:
             print('Error make_order()')
 
@@ -88,3 +91,5 @@ print(a*b)
 print(b / a)
 c = Cell(10)
 c.make_order(3)
+c.make_order(5)
+c.make_order(8)
