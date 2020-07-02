@@ -29,8 +29,8 @@ class Clothes(ABC):
         pass
 
     def total_fabric(self, size, height):
-        self.coat = self.size / self.const_coat_6_5 + self.const_coat_0_5
-        self.suit = self.height / self.const_suit_2 + self.const_suit_0_3
+        self.coat = size / self.const_coat_6_5 + self.const_coat_0_5
+        self.suit = height / self.const_suit_2 + self.const_suit_0_3
         self.total = self.coat + self.suit
         return self.total
 
