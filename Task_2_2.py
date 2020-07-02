@@ -11,20 +11,28 @@
 проверить на практике работу декоратора @property.
 """
 
-
 from abc import ABC, abstractmethod
 
 
 class Clothes(ABC):
-
     const_coat_6_5 = 6.5
     const_coat_0_5 = 0.5
     const_suit_2 = 2
     const_suit_0_3 = 0.3
 
+    def __init__(self, size, height):
+        self.size = size
+        self.height = height
+
     @abstractmethod
-    def consumption_fabric(self):
+    def consumption_fabric(self, size, height):
         pass
+
+    def total_fabric(self, size, height):
+        self.coat = self.size / self.const_coat_6_5 + self.const_coat_0_5
+        self.suit = self.height / self.const_suit_2 + self.const_suit_0_3
+        self.total = self.coat + self.suit
+        return self.total
 
 
 class Coat(Clothes):
@@ -47,28 +55,28 @@ class Coat(Clothes):
             if not isinstance(size, (int, float)):
                 print('Error! you enter not number')
             if size < 46:
-                self.__size = 44 # устанавливаем размер xs
+                self.__size = 44  # устанавливаем размер xs
             elif 46 <= size <= 48:
                 self.__size = 48  # устанавливаем размер s
             elif 48 < size <= 50:
                 self.__size = 50  # устанавливаем размер m
             else:
-               self.__size = 52 # размер l и выше( к сожалению, оверсайза нет, ищите другой магазин...
+                self.__size = 52  # размер l и выше( к сожалению, оверсайза нет, ищите другой магазин...
         except ValueError:
-            print('Error! size()')
+            print('Error! size.setter')
 
     def consumption_fabric(self):
         try:
             self.consumption_fabric = self.size / self.const_coat_6_5 + self.const_coat_0_5
             return self.consumption_fabric
         except:
-            print('Error in consumption_fabric()')
+            print('Error in consumption_fabric() class Coat')
 
     def __str__(self):
         try:
             return f'Сonsuption fabric on Coat need on your size {str(self.size)} is {self.consumption_fabric:.2f} '
         except:
-            print('Error __str__')
+            print('Error __str__ class Coat')
 
 
 class Suit(Clothes):
@@ -81,21 +89,34 @@ class Suit(Clothes):
 
     @height.setter
     def height(self, height):
-        if height < 150:
-            self.__height = 150  # устанавливаем рост 150
-        elif 150 <= height <= 165:
-            self.__height = 165  # устанавливаем рост 165
-        elif 165 < height <= 180:
-            self.__height = 180  # устанавливаем рост 180
-        else:
-            self.__height = 200  # устанавливаем рост 200
+        try:
+            if not isinstance(height, (int, float)):
+                print('Error! you enter not number')
+            if height < 150:
+                self.__height = 150  # устанавливаем рост 150
+            elif 150 <= height <= 165:
+                self.__height = 165  # устанавливаем рост 165
+            elif 165 < height <= 180:
+                self.__height = 180  # устанавливаем рост 180
+            else:
+                self.__height = 200  # устанавливаем рост 200
+        except ValueError:
+            print('Error! height.setter')
+
 
     def consumption_fabric(self):
-        self.consumption_fabric = self.height / self.const_suit_2 + self.const_suit_0_3
+        try:
+            self.consumption_fabric = self.height / self.const_suit_2 + self.const_suit_0_3
+        except:
+            print('Error in consumption_fabric() class Suit')
         return self.consumption_fabric
 
+
     def __str__(self):
-        return f'Consuption fabric to your Suit need for your hight {str(self.height)} is : {self.consumption_fabric:.1f}'
+        try:
+            return f'Consuption fabric to your Suit need for your hight {str(self.height)} is : {self.consumption_fabric:.1f}'
+        except:
+            print('Error __str__ class Suit')
 
 
 new_coat = Coat(1)
@@ -105,6 +126,9 @@ new_coat = Coat(47)
 new_coat.consumption_fabric()
 print(new_coat)
 new_coat = Coat(49)
+new_coat.consumption_fabric()
+print(new_coat)
+new_coat = Coat(55)
 new_coat.consumption_fabric()
 print(new_coat)
 
@@ -120,3 +144,6 @@ print(new_suit)
 new_suit = Suit(200)
 new_suit.consumption_fabric()
 print(new_suit)
+
+a = Clothes(100, 100)
+a.total_fabric(100, 100)
