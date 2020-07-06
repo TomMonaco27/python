@@ -70,18 +70,18 @@ class Printer(OfficeEquipment):
         self.printer_list[2] = self.number_model
         self.printer_list[3] = self.type_printer
 
-    def add_printer(self, *list):
-        self.list = *list
-        for el in self.list:
-            StorehouseOfficeEquipment().goods_reception(el)
+#    def add_printer(self, *list):
+#       self.list = *list
+#       for el in self.list:
+#           StorehouseOfficeEquipment().goods_reception(el)
 #            self.printer_list[0] = self.name_office_equipment
 #            self.printer_list[1] = self.serial_number
 #            self.printer_list[2] = self.number_model
 #            self.printer_list[3] = self.type_printer
         return self.printer_list
 
-#    def add_printer(self):
-#        StorehouseOfficeEquipment().goods_reception(self.printer_list)
+    def add_printer(self):
+        StorehouseOfficeEquipment().goods_reception(self.printer_list)
 
 
     def __str__(self):
