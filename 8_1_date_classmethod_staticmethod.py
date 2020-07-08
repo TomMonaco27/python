@@ -41,5 +41,3 @@ my_time = input('Please , enter data in format DD-MM-YY: ')
 #my_time = '3-1-2'
 Data.valid_date(Data.date_extraction(my_time))
 print('End of the program.')
-
-
