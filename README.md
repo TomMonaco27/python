@@ -1,2 +1,3 @@
 # Study python
-for more see branches lesson-1 to lesson-10
+<br>
+for more see branches lesson-1 to lesson-8
